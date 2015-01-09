@@ -16,12 +16,14 @@ describe('test registration and sign in', function() {
        time = date.getTime();
        email = 'test+'+time+'@mckissock.com';
        console.log('email: ' + email );
+
     });
     it('should select a state, and product, and register, and pay', function(){
         landingPage_page.getStateFromDropDown('California');
         expect(browser.getCurrentUrl()).toContain('california');
         browser.ignoreSynchronization = true;
-        selectProduct_page.getProductFromDropDown('[data-sku="3bd9b5e0-8183-11e4-a998-3f5bafab4308"]');
+        //selectProduct_page.getProductFromDropDown('[data-sku="3bd9b5e0-8183-11e4-a998-3f5bafab4308"]');
+        selectProduct_page.getProductFromDropDown(selectProduct_page.CA_30_DAY_INSURANCE);
         browser.ignoreSynchronization = true;
         expect(browser.getCurrentUrl()).toContain('register');
         signup_page.register(email, password);
