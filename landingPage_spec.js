@@ -1,8 +1,5 @@
 var landingPage_page = require('./landingPage_page.js');
 describe('testing landingpage', function(){
-    var states = ["Choose a State", "Arizona", "California","Georgia", "Kansas", "Massachusetts", "Michigan", "Missouri",
-        "New Jersey", "New York", "North Carolina", "Pennsylvania", "Texas", "Virginia", "Washington", "Wisconsin"];
-    var statesLength = states.length;
 
     beforeEach(function(){
       browser.ignoreSynchronization = true;
@@ -11,7 +8,7 @@ describe('testing landingpage', function(){
 
   it('should have a title', function() {
       console.log('Should Have a Title: ');
-      expect(browser.getTitle()).toBe('Insurance Exam Prep');
+      expect(browser.getTitle()).toBe(landingPage_page.Insuranse_Exam_Prep_Title);
   });
 
   it('should show need help phone number', function(){
@@ -30,6 +27,25 @@ describe('testing landingpage', function(){
           expect(rightNavItems).toBe(landingPage_page.rightNav_STRING[i]);
       };
   });
+
+  it('should click FAQ link and open FAQ page', function(){
+      landingPage_page.clickFAQLink();
+      expect(browser.getTitle()).toBe(landingPage_page.Insurance_Exam_Prep_FAQ_Title);
+      browser.navigate().back();
+  });
+
+  it('should click Contact link and navigate to Contact page', function(){
+      landingPage_page.clickContactLink();
+      expect(browser.getTitle()).toBe(landingPage_page.Insurance_Exam_Prep_Contact_Title);
+      browser.navigate().back();
+  });
+
+  it('should click Log in link and navigate to Login page', function(){
+      landingPage_page.clickLoginLink();
+      expect(browser.getCurrentUrl()).toContain('/register')
+      browser.navigate().back();
+  });
+
   it('should check states drop-down', function(){
       landingPage_page.statesdropdown.then(function(items){
         expect(items.length).toBe(landingPage_page.statesLength);

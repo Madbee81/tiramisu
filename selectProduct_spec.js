@@ -20,6 +20,5 @@ describe('test product selection page', function(){
         //element(by.id('buy_ ')).click();
         selectProduct_page.getProductFromDropDown('[data-sku="3bd9b5e0-8183-11e4-a998-3f5bafab4308"]');
            expect(browser.getCurrentUrl()).toContain('register');
-
     });
 });

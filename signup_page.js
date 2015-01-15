@@ -20,14 +20,12 @@ var signup_page = function(){
         browser.waitForAngular();
         this.registerButton.click();
         browser.waitForAngular();
-
-
     };
+
     this.login = function loginOnSignUpPage(email, password){
         this.signinLink.click();
         this.loginEmail.sendKeys(email);
         this.loginPassword.sendKeys(password);
-
     };
 };
 module.exports = new signup_page();
