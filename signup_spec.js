@@ -7,7 +7,7 @@ describe('test registration and sign in', function() {
 
    beforeEach(function(){
        browser.ignoreSynchronization = true;
-       browser.get('http://insuranceexamprep.com/#');
+       browser.get('https://my.insuranceexamprep.com/register');
        var date = new Date();
        time = date.getTime();
        email = 'test+'+time+'@mckissock.com';
@@ -30,9 +30,7 @@ describe('test registration and sign in', function() {
         element(by.model('login')).sendKeys(email);
         element(by.model('password')).sendKeys(password);
         element(by.id('loginSubmit')).click();
-
         });
-
      });
 
     var signup_page = require('./signup_page.js');
