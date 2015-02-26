@@ -11,7 +11,7 @@ var signup_page = function(){
     this.loginButton = element(by.id('loginSubmit'));
     this.loginLink = element(by.linkText("Log In"));
 
-    this.register = function registerOnSignUpPage(email, password) {
+    this.registerOnSignUpPage = function registerOnSignUpPage(email, password) {
         this.email.sendKeys(email);
         this.password.sendKeys(password);
         this.confirmPassword.sendKeys(password);
@@ -22,10 +22,10 @@ var signup_page = function(){
         browser.waitForAngular();
     };
 
-    this.login = function loginOnSignUpPage(email, password){
-        this.signinLink.click();
-        this.loginEmail.sendKeys(email);
-        this.loginPassword.sendKeys(password);
+    this.loginOnSignUpPage = function loginOnSignUpPage(email, password){
+        element(by.id('navbarLoginEmail')).sendKeys(email);
+        element(by.id('navbarLoginPassword')).sendKeys(password);
+        element(by.id('loginSubmit')).click();
     };
 };
 module.exports = new signup_page();

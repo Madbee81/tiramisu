@@ -1,9 +1,10 @@
 var landingPage_page = require('./landingPage_page.js');
-describe('testing landingpage', function(){
+describe('test landing page', function(){
 
     beforeEach(function(){
       browser.ignoreSynchronization = true;
-      browser.get('http://insuranceexamprep.com/#');
+      //browser.get('http://insuranceexamprep.com/#')
+      browser.get('http://beryllium-staging.mckissock.rocks/');
   });
 
   it('should have a title', function() {
@@ -69,11 +70,12 @@ describe('testing landingpage', function(){
           for (i = 1; i < items.length; i++) {
                element(by.linkText('Choose a State')).click();
                item.get(i).$('a').click();
-               expect(browser.getCurrentUrl()).toContain(states[i].replace(/\s+/g, '-').toLowerCase());
+               expect(browser.getCurrentUrl()).toContain(landingPage_page.states_STRING[i].replace(/\s+/g, '-').toLowerCase());
                browser.navigate().back();
            };
       });
   });
+
 });
 
 

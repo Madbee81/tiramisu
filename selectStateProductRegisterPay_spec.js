@@ -27,7 +27,7 @@ describe('test purchase and registration', function() {
         selectProduct_page.getProductFromDropDown(selectProduct_page.CA_PRODUCT_SKU[0]);
         expect(browser.getCurrentUrl()).toContain('register');
         browser.waitForAngular();
-        signup_page.register(email, password);
+        signup_page.registerOnSignUpPage(email, password);
         expect(browser.getCurrentUrl()).toContain('register');
         browser.waitForAngular();
         browser.ignoreSynchronization = true;
