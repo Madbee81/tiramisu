@@ -1,40 +1,34 @@
 var util = require ('util')
+var landingPage_page = require('./landingPage_page.js');
+var signup_page = require('./signup_page.js');
 
 describe('test registration and sign in', function() {
     var password = 'tester123';
-    var email;
+    var email ='test+automation@gmail.com';
     var time;
 
    beforeEach(function(){
        browser.ignoreSynchronization = true;
-       browser.get('https://my.insuranceexamprep.com/register');
-       var date = new Date();
-       time = date.getTime();
-       email = 'test+'+time+'@mckissock.com';
-    });
-
-     it('should test locators on signup page', function() {
-        element(by.model('account.email')).sendKeys(email);
-        element(by.model('account.password')).sendKeys(password);
-        element(by.model('account.confirmPassword')).sendKeys(password);
-        element(by.model('account.firstName')).sendKeys('Rachel');
-        element(by.model('account.lastName')).sendKeys('RachelTester');
-        element(by.buttonText('Register')).click();
-        expect(browser.getCurrentUrl()).toContain('dashboard');
-        element(by.css('td.ng-binding')).getText().then(function(text){
+       browser.get('http://beryllium-staging.mckissock.rocks/');
+   });
+   it('should test forget password on signup page', function() {
+         landingPage_page.clickLoginLink();
+         expect(browser.getCurrentUrl()).toContain('register');
+         browser.waitForAngular();
+         browser.manage().timeouts().implicitlyWait(5000);
+         signup_page.forgotPassword(email);
+         expect(browser.getCurrentUrl()).toContain('reset');
+         element(by.tagName('h1')).getText().then(function(text) {
+             console.log("Contains Text: " + text);
+             expect(element(by.tagName('h1')).getText()).toContain('Forgot Your Password?');
+         });
+         element(by.id('inputEmail3')).sendKeys(email);
+         element(by.buttonText('Reset Password')).click();
+         element(by.css('.well')).getText().then(function(text){
             console.log(text);
-        expect(element(by.css('td.ng-binding')).getText()).toEqual(email);
-        element(by.id('logout')).click();
-        expect(browser.getCurrentUrl()).toContain('register');
-        element(by.linkText('Sign in here')).click();
-        element(by.model('login')).sendKeys(email);
-        element(by.model('password')).sendKeys(password);
-        element(by.id('loginSubmit')).click();
-        });
-     });
-
-    var signup_page = require('./signup_page.js');
-
+         expect(element(by.css('.well')).getText()).toContain('Reset Password');
+         });
+   });
 });
 
 

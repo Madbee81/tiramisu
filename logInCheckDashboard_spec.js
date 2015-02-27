@@ -3,7 +3,7 @@ var landingPage_page = require('./landingPage_page.js');
 var signup_page = require('./signup_page.js');
 describe('test login and check Dashboard', function() {
     var password = 'tester123';
-    var email = 'test+1424895558078@mckissock.com';
+    var email = 'test+automation@gmail.com';
 
    beforeEach(function(){
        browser.ignoreSynchronization = true;

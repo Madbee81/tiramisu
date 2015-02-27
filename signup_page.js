@@ -9,7 +9,7 @@ var signup_page = function(){
     this.loginEmail = element(by.model('login'));
     this.loginPassword = element(by.model('password'));
     this.loginButton = element(by.id('loginSubmit'));
-    this.loginLink = element(by.linkText("Log In"));
+    this.loginLink = element(by.linkText("Log in"));
 
     this.registerOnSignUpPage = function registerOnSignUpPage(email, password) {
         this.email.sendKeys(email);
@@ -26,6 +26,10 @@ var signup_page = function(){
         element(by.id('navbarLoginEmail')).sendKeys(email);
         element(by.id('navbarLoginPassword')).sendKeys(password);
         element(by.id('loginSubmit')).click();
+    };
+    this.forgotPassword = function forgotPassword(email){
+        element(by.id('navbarLoginEmail')).sendKeys(email);
+        element(by.linkText("Forgot Password?")).click();
     };
 };
 module.exports = new signup_page();

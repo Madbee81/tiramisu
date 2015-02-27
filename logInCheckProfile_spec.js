@@ -4,14 +4,17 @@ var signup_page = require('./signup_page.js');
 
 describe('test login and check Profile', function() {
     var password = 'tester123';
+    var passwordNew = 'tester123';
+
     //var email = 'rstlpnr+0216prod1@gmail.com';
-    var email = 'test+1424895558078@mckissock.com';
-    var firstName = 'Test';
+    var email = 'test+automation@gmail.com';
+    var firstName = 'Rachel';
     var lastName = 'Tester';
     var firstNameNew = 'TestNew';
     var lastNameNew = 'TesterNew';
-    var emailNew = 'test+1424332410127New@mckissock.com';
-   beforeEach(function(){
+    var emailNew = 'rstlpnr+0226@gmail.com';
+
+    beforeEach(function(){
        browser.ignoreSynchronization = true;
        browser.get('http://beryllium-staging.mckissock.rocks/');
        //browser.get('http://insuranceexamprep.com/');
@@ -41,8 +44,9 @@ describe('test login and check Profile', function() {
    });
 
    it('should test update profile', function(){
+       browser.ignoreSynchronization = true;
+       browser.get('http://beryllium-staging.mckissock.rocks/');
        landingPage_page.clickLoginLink();
-       expect(browser.getCurrentUrl()).toContain('register');
        signup_page.loginOnSignUpPage(email, password);
        browser.waitForAngular();
        browser.manage().timeouts().implicitlyWait(5000);
@@ -51,8 +55,14 @@ describe('test login and check Profile', function() {
        element(by.model('account.email')).sendKeys(emailNew);
        element(by.model('account.firstName')).sendKeys(firstNameNew);
        element(by.model('account.lastName')).sendKeys(lastNameNew);
-      // element(by.xpath(('//button[@type='submit'])[2]')'').click();
-
+       browser.manage().timeouts().implicitlyWait(5000);
+       //element(by.css('[ui-view="profileEdit"]')).$('[ng-disabled="form.$invalid"]').click();
+       element(by.model('account.password')).sendKeys(passwordNew);
+       element(by.model('account.password1')).sendKeys(passwordNew);
+       element(by.model('account.password2')).sendKeys(passwordNew);
+       element(by.model('account.firstName')).sendKeys(firstNameNew);
+       element(by.model('account.lastName')).sendKeys(lastNameNew);
+       //element(by.css('[ui-view="profilePassword"]')).$('[ng-disabled="form.$invalid"]').click();
    });
  });
 
